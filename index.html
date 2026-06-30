@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Redirecting to the Texaco App...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    window.onload = function() {
+      var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+
+      // App store links
+      var iosUrl = "https://apps.apple.com/us/app/texaco/id1451359429";
+      var androidUrl = "https://play.google.com/store/apps/details?id=com.stuzo.texaco";
+      var fallbackUrl = "https://www.texacoinhawaii.com/mobile-app/"; // desktop/laptop visitors
+
+      // 1. iPhone / iPod
+      if (/iPhone|iPod/.test(userAgent) && !window.MSStream) {
+        window.location.replace(iosUrl);
+      }
+      // 2. iPad / iPadOS (including newer iPads that report as desktop Macs)
+      else if ((/iPad/.test(userAgent) || (navigator.maxTouchPoints && navigator.maxTouchPoints > 2 && /Macintosh/.test(userAgent))) && !window.MSStream) {
+        window.location.replace(iosUrl);
+      }
+      // 3. Android
+      else if (/android/i.test(userAgent)) {
+        window.location.replace(androidUrl);
+      }
+      // 4. Everyone else (desktop, etc.)
+      else {
+        window.location.replace(fallbackUrl);
+      }
+    };
+  </script>
+</head>
+<body style="background: #ffffff; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0;">
+  <p style="font-family: sans-serif; color: #333; font-size: 18px; text-align: center; padding: 20px;">
+    Redirecting you to the Texaco app...<br>
+    If it doesn't load, <a href="https://www.texacoinhawaii.com" style="color: #E2231A;">click here</a>.
+  </p>
+</body>
+</html>
